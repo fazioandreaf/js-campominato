@@ -1,10 +1,10 @@
-function mineswipper() {
+function mineswipper(difficolta, n_numeriPC) {
     var numeriPC= [];
     var numeriPCunici= [];
-    for (i=0;i<16;i++){
-        numeriPC.push(Math.floor(Math.random()*100));
+    for (i=0;i<n_numeriPC;i++){
+        numeriPC.push(Math.floor(Math.random()*(difficolta+1)));
     }
-    for (i=0;i<16;i++) {
+    for (i=0;i<n_numeriPC;i++) {
         if (!numeriPCunici.includes(numeriPC[i])){
             numeriPCunici.push(numeriPC[i]);
         }
@@ -15,22 +15,21 @@ function mineswipper() {
     } 
     while(variabile>0){
         for (i=0;i<variabile;i++) {
-            let numeriAggiuntiviPC = Math.floor(Math.random()*100);
+            let numeriAggiuntiviPC = Math.floor(Math.random()*(difficolta+1));
             if (!numeriPCunici.includes(numeriAggiuntiviPC)){
-                  numeriPCunici.push(numeriPC[numeriPCunici.length]);
+                  numeriPCunici.push(numeriAggiuntiviPC);
               }
         }
         variabile= numeriPC.length - numeriPCunici.length ;
      }
-    console.log(numeriPC,numeriPC.length);
     console.log(numeriPCunici,numeriPCunici.length);
+    document.getElementById('numeriPChtml').innerHTML += numeriPCunici;
     var j=0;
-    for (i=17;i<101;i++) {
-        let numeroUtente = parseInt(prompt('Scrivi il tuo ' + i+'-esimo numero compreso tra 1 a 99'));
-        if (!(numeroUtente>0 && numeroUtente<100)) {
-            return alert ('Non hai inserito un numero compreso tra 1 e 99')
+    for (i=n_numeriPC;i<difficolta;i++) {
+        let numeroUtente = parseInt(prompt('Scrivi il tuo ' + i+'-esimo numero compreso tra 1 a ' + difficolta));
+        if (!(numeroUtente>0 && numeroUtente<difficolta)) {
+            return alert ('Non hai inserito un numero compreso tra 0 e ' + difficolta)
         }
-        console.log(numeroUtente, typeof numeroUtente);
         if (!numeriPCunici.includes(numeroUtente)){
               numeriPCunici.push(numeroUtente);
               j++;
@@ -42,13 +41,10 @@ function mineswipper() {
           console.log(numeriPCunici,numeriPCunici.length);
     }
     return alert('hai vinto!')
-   
- 
-
-
-        
 }
-    
+var difficolta =  parseInt(prompt('Inserisci il numero della griglia'));
+var n_numeriPC =  parseInt(prompt('Inserisci i numeri giá dati dal pc'));
+mineswipper(difficolta,n_numeriPC)
 
     
   
