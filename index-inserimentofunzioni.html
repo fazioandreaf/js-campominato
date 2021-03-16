@@ -19,22 +19,28 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
     <div class="container">
 
         <span id="numeriPChtml">Numeri già conteggiati </span>
-        <input type="button" value="" onclick="creazioneArrUnici()">
+        <input type="button" value="" onclick="creazioneArrUnici(numeriPC,numeriPCunici)">
+        <input type="button" value="" onclick="logger(numeriPCunici)">
     </div>
 
     <script >
-        function creazioneArrUnici(arr1,arr2) {    
-            for (i=0;i<arr1.length;i++) {
-            if (!arr2.includes(arr1[i])){
-                arr2.push(arr1[i]);
-            }
-        }
-        return arr2
-        }
         var numeriPC=[1,2,3,4,5,6,7,7,8,9];
         var n_numeriPC =  10;
         var numeriPCunici= [];
-        var numeriPCunici=creazioneArrUnici(numeriPC,numeriPCunici);
+        function creazioneArrUnici(arr1,arr2) {    
+            for (i=0;i<arr1.length;i++) {
+                if (!arr2.includes(arr1[i])){
+                    arr2.push(arr1[i]);
+                }
+            }
+            return arr2
+        }
+        numeriPCunici= arr2 ;
+        function logger(provaaa) {
+
+            console.log(provaaa)
+        }
+        
         
         
         

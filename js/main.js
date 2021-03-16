@@ -1,34 +1,32 @@
-function mineswipper(difficolta, n_numeriPC) {
+function mineswipper(dimMax, numerinoti) {
     var numeriPC= [];
     var numeriPCunici= [];
-    for (i=0;i<n_numeriPC;i++){
-        numeriPC.push(Math.floor(Math.random()*(difficolta+1)));
-    }
-    for (i=0;i<n_numeriPC;i++) {
-        if (!numeriPCunici.includes(numeriPC[i])){
-            numeriPCunici.push(numeriPC[i]);
-        }
+    for (i=0;i<numerinoti;i++) {
+        let value= Math.floor(Math.random()*(dimMax+1));
+        if (!numeriPCunici.includes(value)){
+              numeriPCunici.push(value);
+          }
     }
     var variabile=0;
-    if (numeriPCunici.length<numeriPC.length) {
-        variabile= numeriPC.length - numeriPCunici.length 
+    if (numeriPCunici.length<numerinoti) {
+        variabile= numerinoti - numeriPCunici.length 
     } 
     while(variabile>0){
         for (i=0;i<variabile;i++) {
-            let numeriAggiuntiviPC = Math.floor(Math.random()*(difficolta+1));
+            let numeriAggiuntiviPC = Math.floor(Math.random()*(dimMax+1));
             if (!numeriPCunici.includes(numeriAggiuntiviPC)){
                   numeriPCunici.push(numeriAggiuntiviPC);
               }
         }
-        variabile= numeriPC.length - numeriPCunici.length ;
+        variabile= numerinoti - numeriPCunici.length ;
      }
     console.log(numeriPCunici,numeriPCunici.length);
     document.getElementById('numeriPChtml').innerHTML += numeriPCunici;
     var j=0;
-    for (i=n_numeriPC;i<difficolta;i++) {
-        let numeroUtente = parseInt(prompt('Scrivi il tuo ' + i+'-esimo numero compreso tra 1 a ' + difficolta));
-        if (!(numeroUtente>0 && numeroUtente<difficolta)) {
-            return alert ('Non hai inserito un numero compreso tra 0 e ' + difficolta)
+    for (i=numerinoti;i<dimMax;i++) {
+        let numeroUtente = parseInt(prompt('Scrivi il tuo ' + i+'-esimo numero compreso tra 1 a ' + dimMax));
+        if (!(numeroUtente>0 && numeroUtente<dimMax)) {
+            return alert ('Non hai inserito un numero compreso tra 0 e ' + dimMax)
         }
         if (!numeriPCunici.includes(numeroUtente)){
               numeriPCunici.push(numeroUtente);
@@ -44,7 +42,7 @@ function mineswipper(difficolta, n_numeriPC) {
 }
 var difficolta =  parseInt(prompt('Inserisci il numero della griglia'));
 var n_numeriPC =  parseInt(prompt('Inserisci i numeri giá dati dal pc'));
-mineswipper(difficolta,n_numeriPC)
+
 
     
   
