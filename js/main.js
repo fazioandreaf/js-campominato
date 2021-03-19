@@ -1,3 +1,11 @@
+function insertbomb (difficolta, arrBomb) {
+    for(i=0;i<difficolta;i++) {
+        let valueData=document.getElementsByClassName('box');
+        if(arrBomb.includes(parseInt(valueData[i].dataset.number))){
+            valueData[i].classList.add('bomb');
+        } 
+    }
+}
 //funzione per controllare i valori dell array se sono unici
 function controlloArr (maxLenghtArr,dimMax,arr) {
     for (i=0;i<maxLenghtArr;i++) {
@@ -7,16 +15,20 @@ function controlloArr (maxLenghtArr,dimMax,arr) {
           }
     }
 }
-function mineswipper(dimMax, numerinoti) {
+function mineswipper(numerinoti) {
+    var difficolta= selezionedifficolta()
+    if(difficolta>2 &&difficolta<0 && )
+    console.log(difficolta)
+
     var numeriPCunici= [];
-    controlloArr (numerinoti,dimMax,numeriPCunici);
+    controlloArr (numerinoti,difficolta,numeriPCunici);
     //controllare se l'array costruito sia della dimensione scelta dallo switch o differisce
     var variabile=0;
     if (numeriPCunici.length<numerinoti) {
         variabile= numerinoti - numeriPCunici.length 
     } 
     while(variabile>0){
-        controlloArr (variabile,dimMax,numeriPCunici);
+        controlloArr (variabile,difficolta,numeriPCunici);
         variabile= numerinoti - numeriPCunici.length ;
      }
      //debug per capire se tutto fila lisco
@@ -24,24 +36,7 @@ function mineswipper(dimMax, numerinoti) {
     //mostrare a video i numeri del pc
     document.getElementById('numeriPChtml').innerHTML= numeriPCunici;
     insertbomb (difficolta,numeriPCunici) 
-    
-        
-    
     //variabile per poi comunicare all' utente quanti numeri ha messo prima di perdere
-    var j=0;
-    for (i=numerinoti;i<dimMax;i++) {
-        let numeroUtente = parseInt(prompt('Scrivi il tuo ' + i+'-esimo numero compreso tra 1 a ' + dimMax));
-        if (!(numeroUtente>0 && numeroUtente<dimMax)) {
-            return alert ('Non hai inserito un numero compreso tra 0 e ' + dimMax)
-        }
-        if (!numeriPCunici.includes(numeroUtente)){
-              numeriPCunici.push(numeroUtente);
-              j++;
-          }else {
-              return alert ('Hai perso ' + ' Hai inserito ' + j + ' numeri')
-          }
-          console.log(numeriPCunici,numeriPCunici.length);
-    }
     return alert('hai vinto!')
 }
 //var difficolta =  parseInt(prompt('Inserisci il numero della griglia'));
@@ -49,18 +44,25 @@ function mineswipper(dimMax, numerinoti) {
 //con difficoltà 0 => tra 1 e 100
 //con difficoltà 1 => tra 1 e 80
 //con difficoltà 2 => tra 1 e 50
-var difficolta= parseInt(prompt('Vuoi giocare con che difficoltà? 0 minimo, 1 o 2 massimo '));
-switch(difficolta){
-    case 0:
-        difficolta=100
-        break;
-    case 1:
-        difficolta= 80
-        break;
-    case 2:
-        difficolta= 50
-        break;
-    default: prompt('Non hai inserito un numero fra quelli proposti')
+var difficolta=0
+function selezionedifficolta() {
+    document.getElementById('mineswipperGrid').innerHTML ='';
+    var difficolta= parseInt(prompt('Vuoi giocare con che difficoltà? 0 minimo, 1 o 2 massimo '));
+    switch(difficolta){
+        case 0:
+            difficolta=100
+            break;
+        case 1:
+            difficolta= 80
+            break;
+        case 2:
+            difficolta= 50
+            break;
+        default: prompt('Non hai inserito un numero fra quelli proposti')
+    }
+    creazioneMineswipepr(difficolta,'mineswipperGrid')
+    console.log(difficolta)
+    return difficolta
 }
 var n_numeriPC =16;
 function creazioneMineswipepr(dimensionemax,id){
@@ -68,18 +70,5 @@ function creazioneMineswipepr(dimensionemax,id){
         document.getElementById(id).innerHTML +='<li class="box" data-number= '+(i+1)+' > </li>';
     }
 }
-creazioneMineswipepr(difficolta,'mineswipperGrid')
-
-function insertbomb (difficolta, arrBomb) {
-    for(i=0;i<difficolta;i++) {
-        let valueData=document.getElementsByClassName('box');
-        if(arrBomb.includes(parseInt(valueData[i].dataset.number))){
-            valueData[i].classList.add('bomb');
-            console.log('fatto')
-        } 
-        console.log(valueData[i].dataset.number,typeof valueData[i].dataset.number)
-    }
-}
-  
 
 
