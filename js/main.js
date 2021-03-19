@@ -59,10 +59,14 @@ switch(difficolta){
     default: prompt('Non hai inserito un numero fra quelli proposti')
 }
 var n_numeriPC =16;
+function creazioneMineswipepr(dimensionemax,id){
+    for(i=0;i<dimensionemax;i++){
+        document.getElementById(id).innerHTML +='<li class="box" data-value= '+(i+1)+' > </li>';
+    }
+}
+creazioneMineswipepr(difficolta,'mineswipperGrid')
 
-
-
-    
+function insertbomb 
   
 
 
