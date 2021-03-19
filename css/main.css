@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding:10px 40%;
+    padding:10px 10%;
 }
 .box{
     flex-basis: 10%;
@@ -27,5 +27,6 @@ body {
     border:1px solid black ;
 }
 .bomb {
-    background-image: url(bomn.png);
+    background-image: url(../bomn.png);
+    background-size: cover ;
 }

@@ -23,6 +23,10 @@ function mineswipper(dimMax, numerinoti) {
     console.log(numeriPCunici,numeriPCunici.length);
     //mostrare a video i numeri del pc
     document.getElementById('numeriPChtml').innerHTML= numeriPCunici;
+    insertbomb (difficolta,numeriPCunici) 
+    
+        
+    
     //variabile per poi comunicare all' utente quanti numeri ha messo prima di perdere
     var j=0;
     for (i=numerinoti;i<dimMax;i++) {
@@ -61,12 +65,21 @@ switch(difficolta){
 var n_numeriPC =16;
 function creazioneMineswipepr(dimensionemax,id){
     for(i=0;i<dimensionemax;i++){
-        document.getElementById(id).innerHTML +='<li class="box" data-value= '+(i+1)+' > </li>';
+        document.getElementById(id).innerHTML +='<li class="box" data-number= '+(i+1)+' > </li>';
     }
 }
 creazioneMineswipepr(difficolta,'mineswipperGrid')
 
-function insertbomb 
+function insertbomb (difficolta, arrBomb) {
+    for(i=0;i<difficolta;i++) {
+        let valueData=document.getElementsByClassName('box');
+        if(arrBomb.includes(parseInt(valueData[i].dataset.number))){
+            valueData[i].classList.add('bomb');
+            console.log('fatto')
+        } 
+        console.log(valueData[i].dataset.number,typeof valueData[i].dataset.number)
+    }
+}
   
 
 
