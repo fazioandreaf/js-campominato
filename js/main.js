@@ -17,8 +17,9 @@ function controlloArr (maxLenghtArr,dimMax,arr) {
 }
 function mineswipper(numerinoti) {
     var difficolta= selezionedifficolta()
-    if(difficolta>2 &&difficolta<0 && )
-    console.log(difficolta)
+    if(difficolta>2 || difficolta<0 ||(isFinite(difficolta)==false)){
+        //  inserire un fermo, tipo return
+    }
 
     var numeriPCunici= [];
     controlloArr (numerinoti,difficolta,numeriPCunici);
@@ -34,10 +35,13 @@ function mineswipper(numerinoti) {
      //debug per capire se tutto fila lisco
     console.log(numeriPCunici,numeriPCunici.length);
     //mostrare a video i numeri del pc
-    document.getElementById('numeriPChtml').innerHTML= numeriPCunici;
     insertbomb (difficolta,numeriPCunici) 
     //variabile per poi comunicare all' utente quanti numeri ha messo prima di perdere
-    return alert('hai vinto!')
+    aggiungereEventoLI('li');
+    
+    var prova=click()
+    console.log(numberCell)
+    
 }
 //var difficolta =  parseInt(prompt('Inserisci il numero della griglia'));
 //var n_numeriPC =  parseInt(prompt('Inserisci i numeri giá dati dal pc'));
@@ -58,17 +62,31 @@ function selezionedifficolta() {
         case 2:
             difficolta= 50
             break;
-        default: prompt('Non hai inserito un numero fra quelli proposti')
+        default:  alert('Non hai inserito un numero fra quelli proposti')
     }
     creazioneMineswipepr(difficolta,'mineswipperGrid')
-    console.log(difficolta)
     return difficolta
 }
 var n_numeriPC =16;
 function creazioneMineswipepr(dimensionemax,id){
     for(i=0;i<dimensionemax;i++){
-        document.getElementById(id).innerHTML +='<li class="box" data-number= '+(i+1)+' > </li>';
+        document.getElementById(id).innerHTML +='<li class="box" data-number= '+(i+1)+' ><img src="bomn.png"></li>';
+        
     }
 }
+
+function aggiungereEventoLI(tag) {
+    let value=document.getElementsByTagName(tag);
+    for(i=0;i<value.length;i++){
+        value[i].addEventListener('click',click)
+    }
+}
+
+function click() {
+    var numberCell= this.dataset.number;
+    console.log(numberCell)
+    return numberCell;
+}
+
 
 
